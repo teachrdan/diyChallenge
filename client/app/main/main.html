@@ -1,15 +1,10 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<header class="hero-unit" id="banner">
-  <div class="container">
-    <h1>'Allo, 'Allo!</h1>
-    <p class="lead">Kick-start your next web app with Angular Fullstack</p>
-    <img src="assets/images/yeoman.png" alt="I'm Yeoman">
-  </div>
-</header>
-
 <div class="container">
 
+</div>
+
+<div class="container">
   <div class="col-md-7">
     <h2 align="left">
       <span class="glyphicon glyphicon-comment"></span>{{comments.length}} Comments
@@ -23,15 +18,17 @@
     <div class="col-md-5">
       <form class="form-inline" role="form">
         <div class="form-group has-feedback">
-          <input type="text" class="form-control" />
-          <i class="form-control-feedback glyphicon glyphicon-user"></i>
+          <input type="text" class="form-control" placeholder="Add a new comment" />
+          <i class="form-control-feedback"></i>
         </div>
       </form>
     </div>
   </div>
 
   <div class="container">
-    <h2><span class="glyphicon glyphicon-heart"></span>{{favorites1.length + favorites2.length}} Favorites</h2>
+    <h2>
+      <span class="glyphicon glyphicon-heart"></span>{{favorites1.length + favorites2.length}} Favorites
+    </h2>
     <div class="col-sm-2">
       <ul ng-repeat="favorite in favorites1">
         <li><img ng-src="{{favorite.maker.avatar.icon.url}}"/>{{favorite.maker.nickname}}</li>
