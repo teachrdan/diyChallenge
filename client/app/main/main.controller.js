@@ -2,35 +2,39 @@
 
 angular.module('diyApp')
   .controller('MainCtrl', function($scope, $http, diyApiFactory){
+    var commentObject = diyApiFactory.getComments();
+    var faveObject = diyApiFactory.getFavorites();
+    var projectObj = diyApiFactory.getProject();
+    var userObject = diyApiFactory.getUser();
+
+    $scope.comments = [];
     $scope.favorites1 = [];
     $scope.favorites2 = [];
-    var faveObject = diyApiFactory.getFavorites();
+    $scope.projectPic = '';
+    $scope.project = '';
+    $scope.user = [];
+
+    commentObject.then(function(data){
+      $scope.comments = data; });
+
     faveObject.then(function(data){
       angular.forEach(data, function(item, index){
         if (index === 0 || index % 2 === 0){
-          $scope.favorites1.push(item);
-        } else {
-          $scope.favorites2.push(item);
-        }
+          $scope.favorites1.push(item); }
+        else { $scope.favorites2.push(item); }
       });
     });
 
-    $scope.comments = [];
-    var commentObject = diyApiFactory.getComments();
-    commentObject.then(function(data){
-      $scope.comments = data;
-    });
+    projectObj.then(function(data){
+      $scope.project = data;
+      console.log($scope.project);
+      $scope.projectPic = data.clips[0].assets.original.url; });
 
-    $scope.user = [];
-    var userObject = diyApiFactory.getUser();
     userObject.then(function(data){
-      console.log('data', data);
-      $scope.user = data;
-    })
+      $scope.user = data; });
 
-    // $scope.awesomeThings = [];
-    //
-    // $http.get('/api/things').success(function(awesomeThings){
-    //   $scope.awesomeThings = awesomeThings;
-    // });
+    $scope.submitComment = function(){
+      diyApiFactory.submitComment($scope.commentText);
+    };
+
   });

@@ -2,6 +2,16 @@
 
 angular.module('diyApp')
   .factory('diyApiFactory', function ($http) {
+    var getComments = function() {
+			return $http({
+				method: 'GET',
+				url: 'https://api.diy.org/makers/hivetest/projects/770936/comments'
+			})
+			.then(function(result){
+				return result.data.response;
+			});
+		};
+
 		var getFavorites = function() {
 			return $http({
 				method: 'GET',
@@ -12,17 +22,17 @@ angular.module('diyApp')
 			});
 		};
 
-		var getComments = function() {
+    var getProject = function() {
 			return $http({
 				method: 'GET',
-				url: 'https://api.diy.org/makers/hivetest/projects/770936/comments'
+				url: 'https://api.diy.org/makers/hivetest/projects/731175'
 			})
 			.then(function(result){
-				return result.data.response;
+        return result.data.response;
 			});
 		};
 
-		var getUser = function() {
+    var getUser = function() {
 			return $http({
 				method: 'GET',
 				url: 'https://api.diy.org/makers/hivetest'
@@ -32,9 +42,19 @@ angular.module('diyApp')
 			});
 		};
 
+    var submitComment = function(text){
+      return $http.post(
+        'https://api.diy.org/makers/hivetest/projects/731175/comments',
+        {msg:text})
+      .success(function(data, status){ console.log('post status', status); })
+      .error(function(data, status){ console.log('post error', status); });
+    };
+
 		return {
-			getFavorites: getFavorites,
-			getComments: getComments,
-			getUser: getUser
+      getComments: getComments,
+      getFavorites: getFavorites,
+      getProject: getProject,
+			getUser: getUser,
+      submitComment: submitComment
 		};
 	});

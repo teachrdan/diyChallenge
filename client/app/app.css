@@ -46,7 +46,15 @@
   width: 100%;
 }
 
-h2 {
+.project-date {
+  color: gray;
+}
+
+.project-title {
+  font-size:30px;
+}
+
+h3 {
   color: gray;
   text-align: left;
 }
