@@ -15,7 +15,9 @@ angular.module('diyApp')
     $scope.user = [];
 
     commentObject.then(function(data){
-      $scope.comments = data; });
+      angular.forEach(data, function(item){
+        $scope.comments.push(item); });
+      });
 
     faveObject.then(function(data){
       angular.forEach(data, function(item, index){
@@ -27,7 +29,6 @@ angular.module('diyApp')
 
     projectObj.then(function(data){
       $scope.project = data;
-      console.log($scope.project);
       $scope.projectPic = data.clips[0].assets.original.url; });
 
     userObject.then(function(data){
@@ -35,6 +36,7 @@ angular.module('diyApp')
 
     $scope.submitComment = function(){
       diyApiFactory.submitComment($scope.commentText);
+      $scope.commentText = '';
     };
 
   });

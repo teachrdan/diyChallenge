@@ -5,9 +5,10 @@ angular.module('diyApp')
     var getComments = function() {
 			return $http({
 				method: 'GET',
-				url: 'https://api.diy.org/makers/hivetest/projects/770936/comments'
+				url: 'https://api.diy.org/makers/hivetest/projects/731175/comments'
 			})
 			.then(function(result){
+        console.log('result', result);
 				return result.data.response;
 			});
 		};
@@ -18,7 +19,7 @@ angular.module('diyApp')
 				url: 'https://api.diy.org/makers/hivetest/favorites'
 			})
 			.then(function(result){
-				return result.data.response;
+				return result.response;
 			});
 		};
 
@@ -43,9 +44,12 @@ angular.module('diyApp')
 		};
 
     var submitComment = function(text){
-      return $http.post(
-        'https://api.diy.org/makers/hivetest/projects/731175/comments',
-        {msg:text})
+      return $http({
+        method: 'POST',
+        url: 'https://api.diy.org/makers/hivetest/projects/731175/comments',
+        headers: { 'x-diy-api-token': '34faea2f757fbef13e9aeb2a31a945cd880e4ec2' },
+        data: {raw: text}
+      })
       .success(function(data, status){ console.log('post status', status); })
       .error(function(data, status){ console.log('post error', status); });
     };

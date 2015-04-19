@@ -20,7 +20,7 @@
       <span class="glyphicon glyphicon-comment"></span>{{comments.length}} Comments
     </h3>
     <ul ng-repeat="comment in comments">
-      <li><img ng-src="{{comment.maker.avatar.icon.url}}"/>{{comment}}</li>
+      <li><img ng-src="{{comment.maker.avatar.icon.url}}"/>{{comment.raw}}</li>
     </ul>
     <div class="form-group has-feedback col-lg-1">
       <img ng-src="{{user.avatar.icon.url}}"/>
@@ -29,7 +29,7 @@
       <form type="submit" class="form-inline" role="form" ng-submit="submitComment()">
         <div class="form-group has-feedback">
           <input type="text" class="form-control" ng-model="commentText" placeholder="Add a new comment" />
-          <i class="form-control-feedback"></i>
+          <!-- <i class="form-control-feedback"></i> -->
         </div>
       </form>
     </div>
