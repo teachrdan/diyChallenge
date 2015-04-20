@@ -8,7 +8,6 @@ angular.module('diyApp')
 				url: 'https://api.diy.org/makers/hivetest/projects/731175/comments'
 			})
 			.then(function(result){
-        console.log('result', result);
 				return result.data.response;
 			});
 		};

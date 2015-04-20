@@ -1,10 +1,11 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-<div class="container">
-  <div class="hero-image col-lg-8 col-md-6">
+<div class="container container-fluid">
+
+  <div class="hero-image col-md-8">
     <img ng-src="{{projectPic}}"/>
   </div>
 
-  <div class="image-sidebar col-lg-4 col-md-6">
+  <div class="image-sidebar col-md-4">
     <span class="project-title">{{project.title}}</span><br>
     <span class="project-date">{{project.stamp | date}}</span>
     <div>
@@ -13,52 +14,52 @@
     </div>
   </div>
 </div>
+<div class="bottom-half">
+<div class="container container-fluid">
 
-<div class="container">
-  <div class="col-lg-7 col-md-6">
-    <h3 align="left">
-      <span class="glyphicon glyphicon-comment"></span>{{comments.length}} Comments
-    </h3>
-    <ul ng-repeat="comment in comments">
-      <li><img ng-src="{{comment.maker.avatar.icon.url}}"/>{{comment.raw}}</li>
-    </ul>
-    <div class="form-group has-feedback col-lg-1">
-      <img ng-src="{{user.avatar.icon.url}}"/>
-    </div>
-    <div class="col-lg-5 col-md-6">
-      <form type="submit" class="form-inline" role="form" ng-submit="submitComment()">
-        <div class="form-group has-feedback">
-          <input type="text" class="form-control" ng-model="commentText" placeholder="Add a new comment" />
-          <!-- <i class="form-control-feedback"></i> -->
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <div class="container">
-    <h3>
-      <span class="glyphicon glyphicon-heart"></span>{{favorites1.length + favorites2.length}} Favorites
-    </h3>
-    <div class="col-lg-2">
-      <ul ng-repeat="favorite in favorites1">
-        <li><img ng-src="{{favorite.maker.avatar.icon.url}}"/>{{favorite.maker.nickname}}</li>
+    <div class="comments col-md-8">
+      <h3 align="left">
+        <span class="glyphicon glyphicon-comment"></span>{{comments.length}} Comments
+      </h3>
+      <ul>
+        <li ng-repeat="comment in comments">
+          <div class="commenter-icon">
+            <a ng-href="https://diy.org/{{comment.maker.nickname}}">
+              <img ng-src="{{comment.maker.avatar.icon.url}}"/>
+            </a>
+          </div>
+          <div class="commenter-box">
+          <a ng-href="https://diy.org/{{comment.maker.nickname}}">{{comment.maker.nickname}}</a><br>
+          {{comment.raw}}
+          <a href="http://www.google.com"><span class="glyphicon glyphicon-arrow-left"></span></a>
+        </div></li>
       </ul>
+      <div class="form-group has-feedback col-lg-1">
+        <img ng-src="{{user.avatar.icon.url}}"/>
+      </div>
+      <div >
+        <form type="submit" class="full-width-div" role="form" ng-submit="submitComment()">
+          <div class="form-group has-feedback">
+            <input type="text" class="form-control" ng-model="commentText" placeholder="Add a new comment" />
+            <!-- <i class="form-control-feedback"></i> -->
+          </div>
+        </form>
+      </div>
     </div>
-    <div class="col-lg-2">
-      <ul ng-repeat="favorite in favorites2">
-        <li><img ng-src="{{favorite.maker.avatar.icon.url}}"/>{{favorite.maker.nickname}}</li>
-      </ul>
+    <div class="col-md-4">
+      <h3>
+        <span class="glyphicon glyphicon-heart"></span>{{favorites1.length + favorites2.length}} Favorites
+      </h3>
+      <div>
+        <ul ng-repeat="favorite in favorites1">
+          <li><img ng-src="{{favorite.maker.avatar.icon.url}}"/>{{favorite.maker.nickname}}</li>
+        </ul>
+      </div>
+      <div>
+        <ul ng-repeat="favorite in favorites2">
+          <li><img ng-src="{{favorite.maker.avatar.icon.url}}"/>{{favorite.maker.nickname}}</li>
+        </ul>
+      </div>
     </div>
-  </div>
 </div>
-
-<!-- <div class="container">
-  <div class="row">
-    <div class="col-lg-12">
-      <h1 class="page-header">Features:</h1>
-      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in awesomeThings">
-        <li><a href="#" tooltip="{{thing.info}}">{{thing.name}}</a></li>
-      </ul>
-    </div>
-  </div> -->
-<!-- </div> -->
+</div>
